@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="js/order.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css\signup.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anamal</title>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="signup-form">
+    <h2>Your order</h2>
+    <form id="orderform">
+      <input type="text" id="name" name="name" placeholder="Item name" required>
+      <input type="number" id="quantity" name="quantity" placeholder="Quantity" required>
+      <input type="text" id="address" name="address" placeholder="Address" required>
+      <input type="number" id="phoneNum" name="phone" placeholder="Phone number ">
+      <button type="submit" id="submit-btn">Send order</button>
+      <div class="home-link"><a href="orders%20list.html">Home page</a></div>
+    </form>
+  </div>
+</div>
+
+
+</body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+  background: url(images/anaml.png) center;
+    background-size: cover;
+    font-family: sans-serif;
+
+
+
+
+    }
+
+    .signup-form {
+          background-color: transparent;
+    color: #fff; /* Assuming you still want white text */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+
+    }
+
+    .signup-form input {
+
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: transparent; /* Set background to transparent */
+
+
+    }
+
+    .signup-form button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        background-color: #ff0000;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+         background-color: transparent;
+    }
+
+    .error-message {
+        color: red;
+        margin-top: 5px;
+    }
+
+    @media(max-width: 500px) {
+        .signup-form {
+            width: 90%;
+        }
+    }
+</style>
+</html>
