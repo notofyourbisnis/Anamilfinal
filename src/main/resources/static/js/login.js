@@ -12,9 +12,9 @@ $(document).ready(function(){
             success: function (user) {
                 if (user == null) {
                     alert("Wrong password or email.");
-                } else if(user.name=="orders"){
+                } else if(user.name=="admin"){
                                     localStorage.setItem("id", user.id);
-                    window.location.href = "index.html"
+                    window.location.href = "admin.html"
 }
 else
                 {

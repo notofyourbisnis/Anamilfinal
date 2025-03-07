@@ -12,5 +12,3 @@ public class WorkApplication {
 	}
 
 }
-//GOOGLE_CLOUD_PROJECT=anamil-e8d76
-//GOOGLE_APPLICATION_CREDENTIALS=C:\Users\Admin\Downloads\anamil-firebase-adminKey.json

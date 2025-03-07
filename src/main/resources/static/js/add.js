@@ -1,52 +1,34 @@
 $(document).ready(function () {
-    // Ensure the JavaScript is working
-    console.log("JavaScript loaded!");
-
-    // Attach the submit event to the form
+    // Prevent form submission by default
     $("#add-product-form").submit(function (event) {
-        event.preventDefault(); // Prevent default form submission behavior
+        event.preventDefault(); // Move it inside the submit handler
 
-        const fileInput = document.getElementById("imageUrl"); // Get file input
-        const file = fileInput.files[0]; // Get the selected file
+        // Get the file from the input
+        const fileInput = document.getElementById('imageUrl');
+        const file = fileInput.files[0]; // Get the first selected file
+        const imageName = file ? file.name : ""; // Get the file name if there's a file, otherwise an empty string
 
-        if (file) {
-            const reader = new FileReader(); // Create FileReader to read file
+        // Create the Product object
+        let Product = {
+            name: $("#name").val(),
+            price: $("#price").val(),
+            description: $("#description").val(),
+            stock: $("#stock").val(),
+            imageUrl: imageName, // Pass the image name here
+        };
 
-            // When the file is read, execute this function
-            reader.onload = function (fileEvent) {
-                // Create the Product object
-                let Product = {
-                    name: $("#name").val(), // Get product name
-                    price: parseFloat($("#price").val()), // Get price as a number
-                    description: $("#description").val(), // Get description
-                    stock: parseInt($("#stock").val(), 10), // Get stock as an integer
-                    imageUrl: fileEvent.target.result // Get the Base64 URL of the image
-                };
-
-                console.log("Product object created:", Product); // Debugging
-
-                // Send the product data to the backend via AJAX.
-
-
-                $.ajax({
-                    type: "POST",
-                    url: "/products/addProduct", // Replace with your backend URL
-                    contentType: "application/json",
-                    data: JSON.stringify(Product), // Convert Product to JSON
-                    success: function () {
-                        alert("Product added successfully!");
-                        window.location.href = "admin.html"; // Redirect to admin page on success
-                    },
-                    error: function ( error) {
-                        console.error("Error adding product:", error); // Debugging
-                        alert("Failed to add product. Please try again.");
-                    }
-                });
-            };
-
-            reader.readAsDataURL(file); // Read the file as a Base64 string
-        } else {
-            alert("Please select an image!"); // Notify user if no image is selected
-        }
+        // Send the product data via AJAX
+        $.ajax({
+            type: "POST",
+            url: "/products/addProduct",
+            contentType: "application/json",
+            data: JSON.stringify(Product),
+            success: function () {
+                window.location.href = "admin.html"; // Redirect after successful post
+            },
+            error: function (error) {
+                console.log("Error saving product: ", error);
+            }
+        });
     });
 });

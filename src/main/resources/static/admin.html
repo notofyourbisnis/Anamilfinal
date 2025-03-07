@@ -1,43 +1,157 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Product</title>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>أنامل</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="images/anaml.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="css/productList.css">
+
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--  -->
+    <!-- owl stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesoeet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 </head>
 <body>
+<!-- banner bg main start -->
+<div class="banner_bg_main">
 
-<h2>Upload Product</h2>
-<form action="/api/products/upload" method="POST" enctype="multipart/form-data">
-    <label for="name">Product Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
+    <!-- logo section start -->
+    <div class="logo_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="logo"><a href="admin.html"><img src="images/anamllogo.png"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- logo section end -->
+    <!-- header section start -->
+    <div class="header_section">
 
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description" required><br><br>
+        <div class="container">
+            <div class="containt_main">
+                <div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="orders list.html">orders</a>
+                    <a href="productList.html">shop list</a>
+                    <a href="addproduct.html">Add product</a>
 
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="price" step="0.01" required><br><br>
 
-    <label for="image">Choose Image:</label>
-    <input type="file" id="image" name="image" accept="image/*" required><br><br>
 
-    <button type="submit">Upload Product</button>
-</form>
 
-<h1>Products for Sale</h1>
-<div>
-    <ul>
-        <li th:each="product : ${products}">
-            <h2 th:text="${product.name}"></h2>
-            <img th:src="${product.image}" alt="Product Image" width="200">
-            <p th:text="${product.description}"></p>
-            <p>Price: $<span th:text="${product.price}"></span></p>
-            <p>Quantity: <span th:text="${product.quantity}"></span></p>
-        </li>
-    </ul>
+                </div>
+
+                <span class="toggle_icon" onclick="openNav()"><img src="images/toggle-icon.png"></span>
+
+                <div class="main">
+                    <div class="login_menu">
+                        <ul>
+
+                            <li><a href="profile.html">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="padding_10">Profile</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="buynow_bt"><a href="order.html">Buy Now</a></div>
+
+                    <!-- Another variation with a button -->
+                </div>
+            </div>
+            <div class="header_box">
+                <div class="lang_box ">
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header section end -->
+
 </div>
+<!-- banner bg main end -->
+<!-- fashion section start -->
+
+<div class="fashion_section">
+    <div id="main_slider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" id="product-carousel">
+            <!-- Product items will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- fashion section end -->
 
 
+    <!-- footer section start -->
+    <div class="banner_bg_main">
+        <div class="container">
+            <div class="footer_logo"><a href="home page.html"><img src="images/anamllogo.png"></a></div>
+            <div class="input_bt">
+                <span class="email" id="basic-addon2">contact us : anamil.pse@gmail.com</span>
+            </div>
+            <div class="footer_menu">
 
+            </div>
+            <div class="location_main">Help Line  Number :052 452 2186</div>
+        </div>
+    </div>
+    /</div>
+<!-- footer section end /-->
+
+<!-- Javascript files-->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/plugin.js"></script>
+<!-- sidebar -->
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/productList.js"></script>
+
+<script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+
+
+</script>
 </body>
 </html>

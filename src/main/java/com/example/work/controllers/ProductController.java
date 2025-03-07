@@ -1,7 +1,6 @@
 package com.example.work.controllers;
 
 import com.example.work.entities.Product;
-import com.example.work.entities.user;
 import com.example.work.services.ProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,20 +9,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products") // Base URL for product-related endpoints
 public class ProductController {
 
     @Autowired
     private ProductServices productService; // Assume a ProductService handles business logic
 
     // 1. Get all products
-    @GetMapping
+    @GetMapping("products/getAllProducts")
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
     // 2. Get a single product by ID
-    @GetMapping("products/{id}")
+    @GetMapping("products/getProductById/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
         Product product = productService.getProductById(id);
         if (product != null) {

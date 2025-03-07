@@ -25,9 +25,6 @@
     +"<td>"+ orders.quantity +"</td>"+
     "<td>"+orders.address+"</td>"
     +"<td>"+ orders.phoneNum+ "</td>"+
-    "<td>" +
-    "<button onclick='deleteOrder(" + orders.id + ")'>" + "delete" + "</button>" +
-    "</td>"
     +"</tr>");
 });
 },
