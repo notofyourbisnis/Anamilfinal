@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Your Shopping Cart</h2>
+
+    <table class="table table-bordered" id="cart-table">
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="cart-items">
+        <!-- Cart items will be populated here -->
+        </tbody>
+    </table>
+
+    <h4>Total: <span id="total-price">0</span> $</h4>
+    <button class="btn btn-secondary" onclick="continueShopping()">Continue Shopping</button>
+</div>
+
+<script>
+    // Fetch the cart data from the backend
+    function loadCart(userId) {
+        $.get(`/cart?userId=${userId}`, function(cart) {
+            // Clear existing table rows
+            $('#cart-items').empty();
+
+            // Loop through the cart items and create table rows
+            let total = 0;
+            cart.items.forEach(item => {
+                const totalItemPrice = item.product.price * item.quantity;
+                total += totalItemPrice;
+
+                $('#cart-items').append(`
+                    <tr>
+                        <td>${item.product.name}</td>
+                        <td>${item.product.price} $</td>
+                        <td>
+                            <input type="number" value="${item.quantity}" min="1" class="form-control" id="quantity-${item.id}" style="width: 70px;">
+                            <button class="btn btn-primary btn-sm" onclick="updateQuantity(${item.id}, ${userId})">Update</button>
+                        </td>
+                        <td>${totalItemPrice} $</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="removeItem(${item.id}, ${userId})">Remove</button>
+                        </td>
+                    </tr>
+                `);
+            });
+            $('#total-price').text(total.toFixed(2));
+        });
+    }
+
+    // Update item quantity
+    function updateQuantity(itemId, userId) {
+        const quantity = $(`#quantity-${itemId}`).val();
+        $.post(`/cart/add?productId=${itemId}&quantity=${quantity}&userId=${userId}`, function(updatedCart) {
+            loadCart(userId); // Reload the cart after updating
+        });
+    }
+
+    // Remove item from cart
+    function removeItem(itemId, userId) {
+        $.post(`/cart/remove?itemId=${itemId}&userId=${userId}`, function(updatedCart) {
+            loadCart(userId); // Reload the cart after removing
+        });
+    }
+
+    // Start by loading the cart for a specific user
+    $(document).ready(function() {
+        const userId = 1; // Example user ID, change it dynamically if needed
+        loadCart(userId);
+    });
+
+    // Continue shopping logic (can be a link to your shop page)
+    function continueShopping() {
+        window.location.href = "/"; // Redirect to home page or shop page
+    }
+</script>
+
+</body>
+</html>

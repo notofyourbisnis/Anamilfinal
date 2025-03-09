@@ -13,12 +13,13 @@ public class ProductServices {
 
     @Autowired
     private ProductRepository Repository; // Repository to interact with the database
-
-    // 1. Get all products
-    public List<Product> getAllProducts() {
-        return Repository.findAll();
+    public ProductServices(ProductRepository productRepository) {
+        this.Repository = productRepository;
     }
 
+    public List<Product> getAllProducts() {
+        return Repository.findAll(); // ✅ Correct way
+    }
     // 2. Get a single product by ID
     public Product getProductById(Long id) {
         Optional<Product> product = Repository.findById(id);

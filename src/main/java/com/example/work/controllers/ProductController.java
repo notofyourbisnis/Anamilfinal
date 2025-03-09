@@ -14,12 +14,13 @@ public class ProductController {
     @Autowired
     private ProductServices productService; // Assume a ProductService handles business logic
 
+    public ProductController(ProductServices productService) {
+        this.productService = productService;}
     // 1. Get all products
     @GetMapping("products/getAllProducts")
     public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+        return productService.getAllProducts(); // ✅ Correct
     }
-
     // 2. Get a single product by ID
     @GetMapping("products/getProductById/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {

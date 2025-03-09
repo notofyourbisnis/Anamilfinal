@@ -23,7 +23,7 @@ $(document).ready(function () {
                                 <p class="stock-text ${product.stock > 0 ? 'text-success' : 'text-danger'}">
                                     Stock: <strong>${product.stock > 0 ? product.stock : 'Out of stock'}</strong>
                                 </p>
-                                <a href="product-details.html" class="btn btn-primary w-100 view-details-btn" data-id="${product.id}">View Details</a>
+                                <a href="login.html" class="btn btn-primary w-100 view-details-btn" data-id="${product.id}">View Details</a>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,53 @@
+$(document).ready(function () {
+$.ajax({
+type: "GET",
+url: "/products/getAllProducts",
+success: function (products) {
+let carouselItems = '';
+let carouselItem = '';
+
+products.forEach((product, index) => {
+const productCard = `
+<div class="col-lg-4 col-sm-4">
+    <div class="product-card">
+        <h4 class="shirt_text">${product.name}</h4>
+        <p class="price_text">Price <span> $ ${product.price}</span></p>
+        <div class="product-img">
+            <img src="/images/${product.imageUrl}" alt="${product.name}">
+        </div>
+        <div class="btn-main">
+            <div class="buy-btn"><a href="login.html">Buy Now</a></div>
+        </div>
+    </div>
+</div>
+`;
+
+if (index % 3 === 0) {
+// Close previous carousel item (except the first)
+if (carouselItem !== '') {
+carouselItems += `<div class="carousel-item">${carouselItem}</div>`;
+}
+// Start new carousel item
+carouselItem = productCard;
+} else {
+carouselItem += productCard;
+}
+
+// Handle first product as active
+if (index === 0) {
+carouselItems = `<div class="carousel-item active">${productCard}`;
+    }
+    });
+
+    // Add last set of products to the carousel
+    if (carouselItem !== '') {
+    carouselItems += `</div>`;
+}
+
+$('#product-carousel').html(carouselItems);
+},
+error: function (error) {
+console.log("Error fetching products: ", error);
+}
+});
+});

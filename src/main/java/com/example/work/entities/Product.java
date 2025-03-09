@@ -1,5 +1,7 @@
 package com.example.work.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -8,10 +10,14 @@ import java.io.Serializable;
 
     @Entity
     @Table(name="products")
+    @JsonIgnoreProperties(ignoreUnknown = true) // Prevent missing fields issue
+
     public class Product implements Serializable {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @JsonProperty("id") // 🔥 Ensures `id` appears in JSON response
         private Long id;
+
             private String name;
             private double price;
             private String description;
@@ -91,6 +97,7 @@ import java.io.Serializable;
             }
 
             public void displayProduct() {
+                System.out.println("product id:"+id);
                 System.out.println("Product Name: " + name);
                 System.out.println("Price: $" + price);
                 System.out.println("Description: " + description);
@@ -98,14 +105,14 @@ import java.io.Serializable;
                 System.out.println("Image URL: " + imageUrl);
             }
 
-            // Example of overriding toString()
-            public String toString() {
-                return "Product{" +
-                        "name='" + name + '\'' +
-                        ", price=" + price +
-                        ", description='" + description + '\'' +
-                        ", stock=" + stock +
-                        ", imageUrl='" + imageUrl + '\'' +
-                        '}';
-            }
+        public String toString() {
+            return "Product{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", price=" + price +
+                    ", description='" + description + '\'' +
+                    ", stock=" + stock +
+                    ", imageUrl='" + imageUrl + '\'' +
+                    '}';
         }
+    }
